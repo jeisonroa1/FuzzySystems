@@ -1,0 +1,25 @@
+#Jeison Ivan Roa Mora - 20131005056
+#######################Instrucciones#################################
+1. Abrir el archivo Code.m desde matlab.
+
+2. Correr el código (Run).
+
+3. En la advertencia que aparece de Matlab al correr el codigo, 
+hacer click en el botón Cambiar carpeta (Change Folder).
+
+4. Se abrirá la gráfica de datos y adicionalmente la maquina difusa desde [fuzzy (Matlab)]
+
+El codigo suministrará la gráfica de los datos correspondientes a la base de datos inicial
+y una gráfica de la superficie con reglas No locales.
+
+#######################iris.dat INFO ################################
+Column:
+   1. sepal length in cm
+   2. sepal width in cm
+   3. petal length in cm
+   4. petal width in cm
+   5. class: 
+      -- Iris Setosa
+      -- Iris Versicolour
+      -- Iris Virginica
+######################################################################

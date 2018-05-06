@@ -1,0 +1,97 @@
+[System]
+Name='BITCOINV2'
+Type='mamdani'
+Version=2.0
+NumInputs=5
+NumOutputs=1
+NumRules=29
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='input1'
+Range=[-1 1]
+NumMFs=4
+MF1='BajoH':'gaussmf',[0.361 -0.990296296296296]
+MF2='BajoL':'gaussmf',[0.193 -0.31989417989418]
+MF3='AltoL':'gaussmf',[0.191 0.291269841269841]
+MF4='AltoH':'gaussmf',[0.465 1.26442328042328]
+
+[Input2]
+Name='input2'
+Range=[-1 1]
+NumMFs=4
+MF1='BajoH':'gaussmf',[0.361 -0.9903]
+MF2='BajoL':'gaussmf',[0.193 -0.3199]
+MF3='AltoL':'gaussmf',[0.191 0.2913]
+MF4='AltoH':'gaussmf',[0.465 1.26]
+
+[Input3]
+Name='input3'
+Range=[-1 1]
+NumMFs=4
+MF1='BajoH':'gaussmf',[0.361 -0.9903]
+MF2='BajoL':'gaussmf',[0.193 -0.3199]
+MF3='AltoL':'gaussmf',[0.191 0.2913]
+MF4='AltoH':'gaussmf',[0.465 1.26]
+
+[Input4]
+Name='input4'
+Range=[-1 1]
+NumMFs=4
+MF1='BajoH':'gaussmf',[0.361 -0.9903]
+MF2='BajoL':'gaussmf',[0.193 -0.3199]
+MF3='AltoL':'gaussmf',[0.191 0.2913]
+MF4='AltoH':'gaussmf',[0.465 1.26]
+
+[Input5]
+Name='input5'
+Range=[-1 1]
+NumMFs=4
+MF1='BajoH':'gaussmf',[0.361 -0.9903]
+MF2='BajoL':'gaussmf',[0.193 -0.3199]
+MF3='AltoL':'gaussmf',[0.191 0.2913]
+MF4='AltoH':'gaussmf',[0.465 1.26]
+
+[Output1]
+Name='output1'
+Range=[-1 1]
+NumMFs=4
+MF1='Precio1':'gaussmf',[0.142 -0.651037037037037]
+MF2='Precio2':'gaussmf',[0.155 -0.148634920634921]
+MF3='precio3':'gaussmf',[0.159 0.343634920634921]
+MF4='precio4':'gaussmf',[0.123 0.819671957671958]
+
+[Rules]
+1 2 3 4 4, 4 (1) : 1
+1 2 2 4 4, 4 (1) : 1
+1 2 1 4 4, 4 (1) : 1
+2 2 4 4 3, 3 (1) : 1
+2 2 4 2 2, 1 (1) : 1
+2 2 3 1 2, 1 (1) : 1
+4 3 3 2 1, 1 (1) : 1
+4 4 4 2 2, 2 (1) : 1
+4 4 2 2 1, 1 (1) : 1
+3 4 2 2 2, 1 (1) : 1
+3 3 2 1 1, 1 (1) : 1
+3 3 3 4 2, 2 (1) : 1
+1 1 2 3 3, 3 (1) : 1
+2 1 2 1 1, 1 (1) : 1
+3 1 3 4 4, 4 (1) : 1
+4 4 3 3 2, 1 (1) : 1
+1 1 1 1 1, 1 (1) : 1
+1 1 2 1 1, 1 (1) : 1
+1 1 2 3 3, 4 (1) : 1
+1 1 2 4 4, 4 (1) : 1
+1 3 2 3 3, 3 (1) : 1
+3 3 3 3 3, 3 (1) : 1
+1 1 1 1 1, 1 (1) : 1
+2 2 2 2 2, 2 (1) : 1
+3 3 3 3 3, 3 (1) : 1
+4 4 4 4 4, 4 (1) : 1
+2 2 2 4 3, 3 (1) : 1
+1 2 2 4 3, 3 (1) : 1
+4 4 4 3 3, 3 (1) : 1
