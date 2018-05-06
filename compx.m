@@ -1,12 +1,12 @@
+%% ComposiciÃ³n difusa
 %% Jeison Ivan Roa Mora
-%% Composición difusa
 
 function [c] = compx (ra,rb)
 [m p1]= size(ra);
 [p2 n]= size(rb);
 c = zeros(m,n);
 if p1~=p2,
-    msg='revise el tamaño de las matrices'
+    msg='revise el tamaÃ±o de las matrices'
     return
 end;
 for i=1:m,
