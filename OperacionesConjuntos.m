@@ -1,7 +1,6 @@
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Jeison Roa - 2017 Operaciones entre conjuntos
-%Particiónes creadas. 
+%% Operaciones entre conjuntos
+%Jeison Roa - 2017 
+%% ParticiÃ³nes creadas. 
 x=[0:1/200:1];
 Ua = trimf(x,[0.25 0.5 0.75]);
 Ub = trapmf(x,[0.6 0.8 2 5]);
