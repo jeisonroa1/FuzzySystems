@@ -1,5 +1,5 @@
-%Jeison Roa - 2017
 %% Inferencias difusas
+%% Jeison Ivan Roa - 2017
 clc
 clear all
 close all
@@ -19,26 +19,26 @@ v = repmat(B,1,N);
 %sizeV = length (v)
 surf(PRE,PRO,u);
 surf(PRE,PRO,v);
-R = min(u,v); %Se calculó la regla local Interseccion
+R = min(u,v); %Se calcula la regla local Interseccion
 figure;
 surf (PRE,PRO,R);
 R2 = u.*v;
 figure
 surf (PRE,PRO,R2)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-P =4; %Medida de presión
+P =4; %Medida de presiÃ³n
 a = trimf(PRE,[P-1 P P+1]); %% Nuevo conjunto difuso de presion
-EE = repmat(a,N,1); %% Extensión cilindrica
+EE = repmat(a,N,1); %% ExtensiÃ³n cilindrica
 figure
 surf (PRE,PRO,R);
 hold on
 surf (PRE,PRO,EE);
-% intersección
+% intersecciÃ³n
 W = min (R,EE);
 figure
 surf (PRE,PRO,W); %sobrevive de la regla ante la evidencia
 % %Calcular proyeccion
-C = max (W,[],2); %calcula el máximo de las columnas
+C = max (W,[],2); %calcula el mÃ¡ximo de las columnas
 figure
 plot (PRO,C); %
 %%%%Reglas no locales
