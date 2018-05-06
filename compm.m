@@ -1,5 +1,5 @@
-%% Jeison Ivan Roa MOra
-%% Composición 
+%% ComposiciÃ³n Difusa
+%% Jeison Ivan Roa Mora
 clear;
 
 %R
