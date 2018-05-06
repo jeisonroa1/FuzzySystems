@@ -1,8 +1,5 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%    PREDICCI”N PRECIO DEL BITCOIN   %%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%JEISON IVAN ROA MORA 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Predictor precio Bitcoin
+%% Jeison Ivan Roa Mora
 clc;
 clear all;
 close all;
@@ -11,7 +8,7 @@ load Bitcoin.mat; %Carga historico en Precio.
 load fis.mat;
 precio(isnan(precio))=[];%Elimina NaN del vector
 
-precioN=(precio(1:100)-min(precio(1:100)))/(max(precio(1:100))-min(precio(1:100)));%NormalizaciÛn de datos (Scaling) para dejar datos entre  [0 1]
+precioN=(precio(1:100)-min(precio(1:100)))/(max(precio(1:100))-min(precio(1:100)));%Normalizaci√≥n de datos (Scaling) 
 meanp=mean(precioN);
 precioNM=precioN-meanp;
 salidas=zeros(95,1);
@@ -20,9 +17,7 @@ for p=1:95
 preciox(p,:)=precioNM(p:p+4);
 end
 salidas=evalfis(preciox,BITCOINV2);
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%ERRORES%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Validaci√≥n
 
 for i=1:length(salidas);
 e1(i)=(precioNM(i+5)-salidas(i)).^2; %RMSE
