@@ -1,4 +1,4 @@
-%% Predictor precio Bitcoin
+%% Predictor precio Bitcoin utilizando un sistema difuso basado en la experiencia.
 %% Jeison Ivan Roa Mora
 clc;
 clear all;
