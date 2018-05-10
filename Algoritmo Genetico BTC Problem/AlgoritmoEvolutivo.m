@@ -1,28 +1,31 @@
-%%EXPERIMENTACION CON EL ALGORITMO-ALGORITMO GENETICO SIMPLE
+%%Implementaci贸n de un algoritmo gen茅tico simple para el dise帽o de un sistema difuso
+%% Para la predicci贸n del precio del Bitcoin
+
+%% Jeison Ivan Roa Mora 2017
 clear all; close all;
 clc
 load Bitcoin.mat; %Carga historico en Precio.
 precio(isnan(precio))=[];%Elimina NaN del vector
-precio=(precio-min(precio))/(max(precio)-min(precio));%Normalizaci髇 de datos (Scaling) para dejar datos entre  [0 1]
+precio=(precio-min(precio))/(max(precio)-min(precio));%Normalizaci贸n de datos (Scaling) para dejar datos entre  [0 1]
 numexp = 50;
 Errorexp = zeros(numexp,1);
 MejoresFis = [];
 for exp=1:numexp,
-%% Algoritmo gen閠ico Simple
+%% Algoritmo gen茅tico Simple
 exp
 %% Caracteristicas de los individuos
 n = 5; %Numero de entradas
 m = 1; %Numero de salidas
 r = 4; %Numero de reglas
 H = 50; %Numero de experimentos para calculo de error de un individuo.
-totpar=2*n*r+r; % No. total de par醡etros
-%% Par醡etros del algoritmo gen閠ico
+totpar=2*n*r+r; % No. total de par谩metros
+%% Par谩metros del algoritmo gen茅tico
 Ngen=500; % No. de generaciones
-npop=30; % Tama駉 de la poblaci髇
-press=0.01; % Presi髇 selectiva
-ipop=npop*2; % Tama駉 de la poblaci髇 intermedia (parejas)
+npop=30; % Tama帽o de la poblaci贸n
+press=0.01; % Presi贸n selectiva
+ipop=npop*2; % Tama帽o de la poblaci贸n intermedia (parejas)
 pcross=0.7; % Probabilidad de cruce (Default 70%)
-pmut=0.05;% Probabilidad de mutaci髇
+pmut=0.05;% Probabilidad de mutaci贸n
 f=0;      %No. de Individuos para elitismo  DESACTIVADO Comentarios seccino elitismo
 %% Variables
 MejoresInd = zeros(f,totpar);
@@ -36,13 +39,13 @@ Iindiv2 = zeros (1,1);
 Errores = zeros (Ngen,npop); 
 e = zeros(H,1);
 
-%% Inicializaci髇 de individuos (Construcci髇 genoma aletario)
+%% Inicializaci贸n de individuos (Construcci贸n genoma aletario)
 rand('state',100*sum(clock));
 poblacion = rand(npop,totpar);
 fobj=zeros(npop,1);
 %% Ciclo principal evoluacion    
 for gen =1:Ngen,
-%% Evaluaci髇 de individuos
+%% Evaluaci贸n de individuos
 for i =1:npop,
     fis=FISg(poblacion(i,:),r,n);     % Se convierte el genotipo en fenotipo.
     fobj(i,1)=FISerror(fis,precio,n,H); % Calculo del error del fenotipo i 
@@ -50,21 +53,21 @@ end;
 fobjMax = max(fobj);
 fobjMin = min(fobj);
 fobjAv  = mean (fobj);
-Errores(gen,:) = fobj(:,1); % Se guardan los errores de todos los individuos en cada generaci髇.
+Errores(gen,:) = fobj(:,1); % Se guardan los errores de todos los individuos en cada generaci贸n.
 outpop(gen,1:3)=[fobjMax fobjMin fobjAv];
 qpop = [ fobjMax fobjMin fobjAv gen];
-%% Elitismo (Editar seccion Nueva poblaci髇 si se activa)
+%% Elitismo (Editar seccion Nueva poblaci贸n si se activa)
 % orden = sort(fobj);
 % for t=1:f,
 %     MejoresInd(t,:) = poblacion(fobj==orden(t));
 % end
 % mejorFIS    = FISg(poblacion(find(min(fobj)),:),r,n);
-%% Calificaci髇 de individuos
+%% Calificaci贸n de individuos
 Efficiency = (1 - press) * (fobjMax - fobj)/max([fobjMax - fobjMin, eps]) + press;
-%% Selecci髇 por ruleta
+%% Selecci贸n por ruleta
 Wheel = cumsum(Efficiency);
   for j=1:ipop   %Forma 60 parejas
-    %Selecci髇 del primer individuo de la pareja
+    %Selecci贸n del primer individuo de la pareja
     Shoot = rand(1,1)*max(Wheel);
     Index = 1;
     while((Wheel(Index)<Shoot)&&(Index<length(Wheel))) 
@@ -73,7 +76,7 @@ Wheel = cumsum(Efficiency);
     indiv1(j,:) = poblacion(Index,:);
     findiv1(j) = fobj(Index);
     Iindiv1(j) = Index;
-    % Selecci髇 del segundo individuo de la pareja
+    % Selecci贸n del segundo individuo de la pareja
     Shoot = rand(1,1)*max(Wheel);
     Index = 1;
     while((Wheel(Index)<Shoot)&&(Index<length(Wheel))) 
@@ -84,7 +87,7 @@ Wheel = cumsum(Efficiency);
     Iindiv2(j)= Index;
   end
 
- % Cruce
+ %% Cruce
  
   for j=1:ipop
     if (pcross>rand(1,1)),
@@ -96,7 +99,7 @@ Wheel = cumsum(Efficiency);
      end;
   end;
   
-   %Mutaci髇
+  %% Mutaci贸n
   
   for j=1:ipop
     if (pmut>rand(1,1)),
@@ -110,7 +113,7 @@ Wheel = cumsum(Efficiency);
       indiv2(j,pind)=vind;
     end
   end 
-%% Nueva poblaci髇 
+%% Nueva poblaci贸n 
 %  for j=1:f, %Elitismo
 %      poblacion(j,:)=MejoresInd(j,:); %Se agregan primeros f individuos por elitismo
 %  end;
@@ -128,48 +131,48 @@ end
 %% Mejor Solucion
 mejorFIS    = FISg(poblacion(find(min(fobj)),:),r,n); %Busca el menor error y construye esa solucion
 
-%%Save Stage
+%% Save Stage
 %save('4reglas100exp.mat','mejorFIS','Errores','outpop','poblacion');%Se guardan finalmente todos los resultados de los experimentos
 Errorexp(exp,1) = FISerror(mejorFIS,precio,n,H);
 %MejoresFis(exp)= [MejoresFis mejorFIS];
 
-end %Final ciclo experimentaci髇
-%%Save Stage (Experimentaci髇)
+end % Final ciclo experimentaci贸n
+%% Save Stage (Experimentaci贸n)
 save('50Exp4Reglasp.mat','MejoresFIS','Errorexp','Errores','outpop','poblacion');%Se guardan finalmente todos los resultados de los experimentos
 
 
-% %% Graficos de resultados 
+%% Graficos de resultados 
 % 
-% figure; %Grafico Error maximo , Error promedio, Error minimo para cada generaci髇
+% figure; %Grafico Error maximo , Error promedio, Error minimo para cada generaci贸n
 % plot(outpop);
 % grid on;
 % set (gca,'fontsize',12);
-% title('Errores para cada generaci髇');
+% title('Errores para cada generaci贸n');
 % legend('Error Maximo','Error Minimo','Error Promedio');
-% ylabel('Estad韘tico de evaluaci髇');
-% xlabel('Generaci髇 #');
+% ylabel('Estad铆stico de evaluaci贸n');
+% xlabel('Generaci贸n #');
 % print('figura110Reglas.png','-dpng','-r300');
 % 
-% figure; %Histograma de evoluci髇. val Errores
-% hist(Errores(2,:),9); %Generaci髇 2 Histograma del error de todos los individuos
+% figure; %Histograma de evoluci贸n. val Errores
+% hist(Errores(2,:),9); %Generaci贸n 2 Histograma del error de todos los individuos
 % hold on
-% hist (Errores(Ngen,:),9); %Generaci髇 Ngen Histograma del error de todos los individuos
+% hist (Errores(Ngen,:),9); %Generaci贸n Ngen Histograma del error de todos los individuos
 % hold on
-% %hist (Errores(round(Ngen/2),:)); %Generaci髇 Ngen/2 Histograma del error de todos los individuos
+% %hist (Errores(round(Ngen/2),:)); %Generaci贸n Ngen/2 Histograma del error de todos los individuos
 % grid on;
 % set (gca,'fontsize',12);
-% title('Histograma de evoluci髇.');
-% legend('Generaci髇 2','Generaci髇 Final');
+% title('Histograma de evoluci贸n.');
+% legend('Generaci贸n 2','Generaci贸n Final');
 % ylabel('Repeticiones');
-% xlabel('Estad韘tico de evaluaci髇');
+% xlabel('Estad铆stico de evaluaci贸n');
 % print('figura210Reglas.png','-dpng','-r300');
 
 figure; %Histograma de experimentos (errores de los mejores de cada exp)
-hist(Errorexp); %Generaci髇 2 Histograma del error de todos los individuos
+hist(Errorexp); %Generaci贸n 2 Histograma del error de todos los individuos
 grid on;
 set (gca,'fontsize',12);
 title('Histograma de experimentos');
 ylabel('Repeticiones');
-xlabel('Estad韘tico de evaluaci髇');
+xlabel('Estad铆stico de evaluaci贸n');
 print('Errorexp4Reglas.png','-dpng','-r300');
 %FIN Escrito: Jeison Ivan Roa Mora
