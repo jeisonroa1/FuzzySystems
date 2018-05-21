@@ -1,18 +1,17 @@
 clear all; close all; clc;
-%% Inicializaci髇
-a=[5 10 15 20 25];      %Numeros de reglas
+%% Inicializaci贸n a=[5 10 15 20 25];      %Numeros de reglas
 alfa = 0.01;      %Tasa de aprendizaje
 c = 500   ;        %Numero de datos de entrenamiento
-v = 50  ;          %Numero de datos de validaci髇
+v = 50  ;          %Numero de datos de validaci贸n
 epochs = 600;       %Numero de epocas.
-%% Inicializaci髇 variables
+%% Inicializaci贸n variables
 traindata = zeros(150,6);
 valdata = zeros(60,6);
 mejorfis =[];
-%% Segmentaci髇 de datos
+%% Segmentaci贸n de datos
 load('Bitcoin.mat');     %Carga base de datos
 precio(isnan(precio))=[];%Elimina NaN del vector
-%precioN=(precio(1:320)-min(precio(1:320)))/(max(precio(1:320))-min(precio(1:320)));%Normalizaci髇 de datos (Scaling) para dejar datos entre  [0 1]
+%precioN=(precio(1:320)-min(precio(1:320)))/(max(precio(1:320))-min(precio(1:320)));%Normalizaci贸n de datos (Scaling) para dejar datos entre  [0 1]
 precioN=precio/6000
 meanp=mean(precioN);
 precioNM=precioN-meanp;
