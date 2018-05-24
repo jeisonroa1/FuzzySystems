@@ -6,18 +6,18 @@ clear all; close all;
 clc
 load Bitcoin.mat; %Carga historico en Precio.
 precio(isnan(precio))=[];%Elimina NaN del vector
-precio=(precio-min(precio))/(max(precio)-min(precio));%Normalización de datos (Scaling) para dejar datos entre  [0 1]
+precio=(precio-min(precio))/(max(precio)-min(precio));%Normalización de datos (Scaling) Datos entre  [0 1]
 numexp = 50;
 Errorexp = zeros(numexp,1);
 MejoresFis = [];
 for exp=1:numexp,
 %% Algoritmo genético Simple
 exp
-%% Caracteristicas de los individuos
+%% Características de los individuos
 n = 5; %Numero de entradas
 m = 1; %Numero de salidas
 r = 4; %Numero de reglas
-H = 50; %Numero de experimentos para calculo de error de un individuo.
+H = 50; %Numero de experimentos para cálculo de error de un individuo.
 totpar=2*n*r+r; % No. total de parámetros
 %% Parámetros del algoritmo genético
 Ngen=500; % No. de generaciones
