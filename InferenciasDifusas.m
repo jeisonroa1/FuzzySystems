@@ -1,8 +1,8 @@
 %% Inferencias difusas
 %% Jeison Ivan Roa - 2017
 clc
-clear all
-close all
+clear all;
+close all;
 PRE = (0:1/10:10); %Universos
 PRO = [0: 1/100:1]';
 A = trimf (PRE, [4 5 6]); %Conjuntos en los universos
