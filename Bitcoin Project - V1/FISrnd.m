@@ -1,13 +1,10 @@
 
 function [myfix] = FISrnd(x,y)
 
-
 m=x; % numero de reglas
 n=y; % numero de entradas
 varran=[-1 1; -1 1;-1 1;-1 1;-1 1 ; -1 1]; % rangos de las entradas y salida ( ?ltima fila )
 myfix=newfis('fis1');
-
-
 
 %Generaci?n de parametros aleatorios segun las escalas
 md1=rand(m,n);
