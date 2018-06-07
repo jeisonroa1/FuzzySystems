@@ -1,4 +1,4 @@
-%% Generación de un sistema de inferencia difusa aleatorio.
+%% GeneraciÃ³n de un sistema de inferencia difusa aleatorio.
 clear;
 clc;
 
@@ -25,7 +25,6 @@ yo=yo1 .* (varran(n+1,2)-varran(n+1,1)) + varran(n+1,1);
 
 
 %Agregaci?n de entradas
-
 for j=1:n,
     myfix = addvar(myfix,'input',['inpt' num2str(j)],varran(j,:));
     for i=1:m,
